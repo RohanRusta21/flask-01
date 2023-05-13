@@ -21,9 +21,8 @@ jobs:
         run: echo "${DOCKERHUB_TOKEN}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
       - name: Push Docker Image to DockerHub
         run: docker push "${DOCKERHUB_USERNAME}"/flask-app:latest
- 
- 
-update-manifest-stage:
+
+  update-manifest-stage:
     runs-on: ubuntu-latest
     needs: ['build-and-push']
     steps:
@@ -41,9 +40,4 @@ update-manifest-stage:
           git add -A
           git commit -am "Update image for - ${{ github.sha }}"
       - run: echo ${{ github }}
-      - run: git push origin main 
- 
- 
- 
- 
-        
+      - run: git push origin main
